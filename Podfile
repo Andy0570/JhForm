@@ -8,7 +8,7 @@ inhibit_all_warnings!
 
 target 'JhForm' do
 
-  #  选择图片依赖HXPhotoPicker和SDWebImage，可以分开加或者使用： pod 'HXPhotoPicker/SDWebImage', '3.1.9'
+  # 选择图片依赖HXPhotoPicker和SDWebImage，可以分开加或者使用： pod 'HXPhotoPicker/SDWebImage', '3.1.9'
   pod 'HXPhotoPicker', '3.1.9'
   pod 'SDWebImage', '5.10.0'
   # 选择图片下载在线视频需要使用AFNetworking

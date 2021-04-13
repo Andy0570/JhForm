@@ -59,17 +59,6 @@
 		ED88B05725809D3A004502BF /* JhForm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED88B03925809D39004502BF /* JhForm.bundle */; };
 		ED88B05825809D3A004502BF /* JhFormConst.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B03D25809D39004502BF /* JhFormConst.m */; };
 		ED88B05925809D3A004502BF /* JhFormHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B04025809D39004502BF /* JhFormHandler.m */; };
-		ED88B0872580AE9D004502BF /* demo6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B07C2580AE9D004502BF /* demo6.jpg */; };
-		ED88B0882580AE9D004502BF /* demo7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B07D2580AE9D004502BF /* demo7.jpg */; };
-		ED88B0892580AE9D004502BF /* demo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B07E2580AE9D004502BF /* demo4.jpg */; };
-		ED88B08A2580AE9D004502BF /* demo1_dark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B07F2580AE9D004502BF /* demo1_dark.jpg */; };
-		ED88B08B2580AE9D004502BF /* demo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0802580AE9D004502BF /* demo3.jpg */; };
-		ED88B08C2580AE9D004502BF /* demo5.gif in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0812580AE9D004502BF /* demo5.gif */; };
-		ED88B08D2580AE9D004502BF /* demo10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0822580AE9D004502BF /* demo10.jpg */; };
-		ED88B08E2580AE9D004502BF /* demo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0832580AE9D004502BF /* demo1.gif */; };
-		ED88B08F2580AE9D004502BF /* demo2.gif in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0842580AE9D004502BF /* demo2.gif */; };
-		ED88B0902580AE9D004502BF /* demo9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0852580AE9D004502BF /* demo9.jpg */; };
-		ED88B0912580AE9D004502BF /* demo8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED88B0862580AE9D004502BF /* demo8.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,17 +181,6 @@
 		ED88B03E25809D39004502BF /* JhFormHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JhFormHandler.h; sourceTree = "<group>"; };
 		ED88B03F25809D39004502BF /* JhFormConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JhFormConst.h; sourceTree = "<group>"; };
 		ED88B04025809D39004502BF /* JhFormHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JhFormHandler.m; sourceTree = "<group>"; };
-		ED88B07C2580AE9D004502BF /* demo6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo6.jpg; sourceTree = "<group>"; };
-		ED88B07D2580AE9D004502BF /* demo7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo7.jpg; sourceTree = "<group>"; };
-		ED88B07E2580AE9D004502BF /* demo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo4.jpg; sourceTree = "<group>"; };
-		ED88B07F2580AE9D004502BF /* demo1_dark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo1_dark.jpg; sourceTree = "<group>"; };
-		ED88B0802580AE9D004502BF /* demo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo3.jpg; sourceTree = "<group>"; };
-		ED88B0812580AE9D004502BF /* demo5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo5.gif; sourceTree = "<group>"; };
-		ED88B0822580AE9D004502BF /* demo10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo10.jpg; sourceTree = "<group>"; };
-		ED88B0832580AE9D004502BF /* demo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo1.gif; sourceTree = "<group>"; };
-		ED88B0842580AE9D004502BF /* demo2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo2.gif; sourceTree = "<group>"; };
-		ED88B0852580AE9D004502BF /* demo9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo9.jpg; sourceTree = "<group>"; };
-		ED88B0862580AE9D004502BF /* demo8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo8.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +254,6 @@
 				ED88AF7025809C2A004502BF /* demo */,
 				ED88B00925809D39004502BF /* JhForm */,
 				ED88B1512580BF5F004502BF /* other */,
-				ED88B07B2580AE9D004502BF /* screenshots */,
 			);
 			path = JhForm;
 			sourceTree = "<group>";
@@ -454,24 +431,6 @@
 			path = JhFormToolClass;
 			sourceTree = "<group>";
 		};
-		ED88B07B2580AE9D004502BF /* screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				ED88B07F2580AE9D004502BF /* demo1_dark.jpg */,
-				ED88B0832580AE9D004502BF /* demo1.gif */,
-				ED88B0842580AE9D004502BF /* demo2.gif */,
-				ED88B0802580AE9D004502BF /* demo3.jpg */,
-				ED88B07E2580AE9D004502BF /* demo4.jpg */,
-				ED88B0812580AE9D004502BF /* demo5.gif */,
-				ED88B07C2580AE9D004502BF /* demo6.jpg */,
-				ED88B07D2580AE9D004502BF /* demo7.jpg */,
-				ED88B0862580AE9D004502BF /* demo8.jpg */,
-				ED88B0852580AE9D004502BF /* demo9.jpg */,
-				ED88B0822580AE9D004502BF /* demo10.jpg */,
-			);
-			path = screenshots;
-			sourceTree = "<group>";
-		};
 		ED88B1512580BF5F004502BF /* other */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,20 +553,9 @@
 				ED88AFDD25809C2A004502BF /* JhBaseHeaderView.xib in Resources */,
 				E93D3F8A21E58DDB003DC702 /* LaunchScreen.storyboard in Resources */,
 				E93D3F8721E58DDB003DC702 /* Assets.xcassets in Resources */,
-				ED88B08C2580AE9D004502BF /* demo5.gif in Resources */,
-				ED88B08F2580AE9D004502BF /* demo2.gif in Resources */,
-				ED88B0892580AE9D004502BF /* demo4.jpg in Resources */,
-				ED88B08B2580AE9D004502BF /* demo3.jpg in Resources */,
-				ED88B0912580AE9D004502BF /* demo8.jpg in Resources */,
-				ED88B0902580AE9D004502BF /* demo9.jpg in Resources */,
-				ED88B0872580AE9D004502BF /* demo6.jpg in Resources */,
 				ED88B05725809D3A004502BF /* JhForm.bundle in Resources */,
 				E93D3F8521E58DD9003DC702 /* Main.storyboard in Resources */,
 				ED88AFDE25809C2A004502BF /* FooterCell.xib in Resources */,
-				ED88B08A2580AE9D004502BF /* demo1_dark.jpg in Resources */,
-				ED88B08D2580AE9D004502BF /* demo10.jpg in Resources */,
-				ED88B0882580AE9D004502BF /* demo7.jpg in Resources */,
-				ED88B08E2580AE9D004502BF /* demo1.gif in Resources */,
 				ED88AFD425809C2A004502BF /* CustumCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
