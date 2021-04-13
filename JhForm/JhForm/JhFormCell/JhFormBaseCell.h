@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JhFormProtocol.h"
+@class JhTextView, JhFormCellModel;
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class JhTextView;
-@class JhFormCellModel;
 
 @interface JhFormBaseCell : UITableViewCell <JhFormProtocol>
 
@@ -44,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)Jh_initUI;
 
-//右侧按钮点击事件
+/// 右侧按钮点击事件
 - (void)Jh_clickRightButton:(UIButton *)button;
 
 @end

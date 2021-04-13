@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 对表单 section Cell提供动态配置
+/// 对表单 section Cell 提供动态配置
 @interface JhFormSectionModel : NSObject
 
 /// 表单 section 包含的Cell数组
@@ -42,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *Jh_footerTitleColor;
 /// 尾部标题字体颜色，默认 JhBaseBgColor
 @property (nonatomic, strong) UIColor *Jh_footerBgColor;
-
 
 @end
 

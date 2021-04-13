@@ -13,7 +13,10 @@
 
 @implementation JhFormHandler
 
-+ (void)Jh_checkEmptyWithFormData:(NSArray *)datas success:(void(^)(void))success failure:(void(^)(NSString *error))failure {
++ (void)Jh_checkEmptyWithFormData:(NSArray *)datas
+                          success:(void(^)(void))success
+                          failure:(void(^)(NSString *error))failure
+{
     for (int section = 0; section < datas.count; section++) {
         JhFormSectionModel *sectionModel = datas[section];
         
@@ -25,7 +28,9 @@
                 if ([title hasSuffix:@":"] || [title hasSuffix:@"："]) {
                     title = [title substringToIndex:title.length - 1];
                 }
-                if (cellModel.Jh_cellType == JhFormCellTypeInput || cellModel.Jh_cellType == JhFormCellTypeTextViewInput || cellModel.Jh_cellType == JhFormCellTypePwdInput) {
+                if (cellModel.Jh_cellType == JhFormCellTypeInput ||
+                    cellModel.Jh_cellType == JhFormCellTypeTextViewInput ||
+                    cellModel.Jh_cellType == JhFormCellTypePwdInput) {
                     if (!cellModel.Jh_info || [cellModel.Jh_info isEqualToString:@""]) {
                         failure([NSString stringWithFormat:@"请输入%@", title]);
                         return;
@@ -40,8 +45,7 @@
                         failure([NSString stringWithFormat:@"请选择%@", title]);
                         return;
                     }
-                }
-                else if (cellModel.Jh_cellType == JhFormCellTypeSelectImage) {
+                } else if (cellModel.Jh_cellType == JhFormCellTypeSelectImage) {
                     if (!cellModel.Jh_imageArr || cellModel.Jh_imageArr.count == 0) {
                         failure([NSString stringWithFormat:@"请选择%@", title]);
                         return;

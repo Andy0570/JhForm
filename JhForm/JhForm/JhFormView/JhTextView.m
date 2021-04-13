@@ -10,11 +10,10 @@
 
 #define kWordCountLabelHeight 15
 
-@interface JhTextView()<UITextViewDelegate>
-//占位符
-@property (nonatomic, strong) UILabel *placeholderLabel;
-//计数字数
-@property (nonatomic, strong) UILabel *wordCountLabel;
+@interface JhTextView() <UITextViewDelegate>
+
+@property (nonatomic, strong) UILabel *placeholderLabel; // 占位符
+@property (nonatomic, strong) UILabel *wordCountLabel;   // 字数统计
 @property (nonatomic, assign) UIEdgeInsets placeHolderLabelInsets;
 
 @property (nonatomic, strong) NSString *placeholder;
@@ -25,35 +24,55 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        [self initUI];
-    }
+    if (!self) { return nil; }
+    [self setupSubviews];
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        [self initUI];
-    }
+    if (!self) { return nil; }
+    [self setupSubviews];
     return self;
 }
 
--(void)initUI {
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (!self) { return nil; }
+    [self setupSubviews];
+    return self;
+}
+
+- (void)setupSubviews {
     self.backgroundColor = [UIColor clearColor];
     self.delegate = self;
     [self placeholderLabel];
     [self wordCountLabel];
 }
 
-//开始编辑
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGFloat placeholderLabelX = _placeHolderLabelInsets.left;
+    CGFloat placeholderLabelY = _placeHolderLabelInsets.top;
+    CGFloat placeholderLabelWidth = self.frame.size.width - _placeHolderLabelInsets.left - _placeHolderLabelInsets.right;
+    CGFloat placeholderLabelHeight = [self.Jh_placeholder boundingRectWithSize:CGSizeMake(placeholderLabelWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.placeholderLabel.font}  context:nil].size.height;
+    self.placeholderLabel.frame = CGRectMake(placeholderLabelX, placeholderLabelY, placeholderLabelWidth, placeholderLabelHeight);
+    if (self.Jh_showLengthNumber) {
+        self.wordCountLabel.frame = CGRectMake(CGRectGetWidth(self.frame)-10-60, CGRectGetHeight(self.frame)-5-kWordCountLabelHeight, 60, kWordCountLabelHeight);
+    }
+}
+
+#pragma mark - <UITextViewDelegate>
+
+// 开始编辑
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if (self.Jh_cellInputBlock) {
         self.Jh_cellInputBlock(textView.text, 0);
     }
 }
 
-//内容发生改变编辑
+// 内容发生改变编辑
 - (void)textViewDidChange:(UITextView *)textView {
     if (self.Jh_cellInputBlock) {
         self.Jh_cellInputBlock(textView.text, 1);
@@ -72,27 +91,16 @@
     }
 }
 
-//结束编辑
+// 结束编辑
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if (self.Jh_cellInputBlock) {
         self.Jh_cellInputBlock(textView.text, 2);
     }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGFloat placeholderLabelX = _placeHolderLabelInsets.left;
-    CGFloat placeholderLabelY = _placeHolderLabelInsets.top;
-    CGFloat placeholderLabelWidth = self.frame.size.width - _placeHolderLabelInsets.left - _placeHolderLabelInsets.right;
-    CGFloat placeholderLabelHeight = [self.Jh_placeholder boundingRectWithSize:CGSizeMake(placeholderLabelWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.placeholderLabel.font}  context:nil].size.height;
-    self.placeholderLabel.frame = CGRectMake(placeholderLabelX, placeholderLabelY, placeholderLabelWidth, placeholderLabelHeight);
-    if (self.Jh_showLengthNumber) {
-        self.wordCountLabel.frame = CGRectMake(CGRectGetWidth(self.frame)-10-60, CGRectGetHeight(self.frame)-5-kWordCountLabelHeight, 60, kWordCountLabelHeight);
-    }
-}
+#pragma mark - Custom Accessors
 
--(UILabel *)placeholderLabel {
+- (UILabel *)placeholderLabel {
     if (!_placeholderLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.font = [UIFont systemFontOfSize:12];
@@ -105,7 +113,7 @@
     return _placeholderLabel;
 }
 
--(UILabel *)wordCountLabel {
+- (UILabel *)wordCountLabel {
     if (!_wordCountLabel) {
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentRight;
@@ -118,7 +126,7 @@
 }
 
 //调整text内容边距
--(void)setJh_textContainerInset:(UIEdgeInsets)Jh_textContainerInset {
+- (void)setJh_textContainerInset:(UIEdgeInsets)Jh_textContainerInset {
     _Jh_textContainerInset = Jh_textContainerInset;
     self.textContainerInset = Jh_textContainerInset;
     self.placeHolderLabelInsets = Jh_textContainerInset;
@@ -130,7 +138,7 @@
     [self layoutSubviews];
 }
 
--(void)setJh_placeholder:(NSString *)Jh_placeholder {
+- (void)setJh_placeholder:(NSString *)Jh_placeholder {
     _Jh_placeholder = Jh_placeholder;
     self.placeholder = Jh_placeholder;
     self.placeholderLabel.text = Jh_placeholder;
@@ -138,19 +146,19 @@
     [self setNeedsLayout];
 }
 
--(void)setJh_placeholderColor:(UIColor *)Jh_placeholderColor {
+- (void)setJh_placeholderColor:(UIColor *)Jh_placeholderColor {
     _Jh_placeholderColor = Jh_placeholderColor;
     self.placeholderLabel.textColor = Jh_placeholderColor;
     [self setNeedsLayout];
 }
 
--(void)setJh_placeholderFont:(CGFloat)Jh_placeholderFont {
+- (void)setJh_placeholderFont:(CGFloat)Jh_placeholderFont {
     _Jh_placeholderFont = Jh_placeholderFont;
     self.placeholderLabel.font = [UIFont systemFontOfSize:Jh_placeholderFont];
     [self setNeedsLayout];
 }
 
--(void)setJh_maxLength:(NSInteger)Jh_maxLength {
+- (void)setJh_maxLength:(NSInteger)Jh_maxLength {
     _Jh_maxLength = Jh_maxLength;
     if (Jh_maxLength == 0) {
         self.wordCountLabel.text = [NSString stringWithFormat:@"%zd",self.text.length];
@@ -160,13 +168,13 @@
     [self setNeedsLayout];
 }
 
--(void)setJh_showLengthNumber:(BOOL)Jh_showLengthNumber {
+- (void)setJh_showLengthNumber:(BOOL)Jh_showLengthNumber {
     _Jh_showLengthNumber = Jh_showLengthNumber;
     self.wordCountLabel.hidden = !Jh_showLengthNumber;
     [self setNeedsLayout];
 }
 
--(void)setJh_textAlignment:(NSTextAlignment)Jh_textAlignment {
+- (void)setJh_textAlignment:(NSTextAlignment)Jh_textAlignment {
     _Jh_textAlignment = Jh_textAlignment;
     self.textAlignment = Jh_textAlignment;
     self.placeholderLabel.textAlignment = Jh_textAlignment;

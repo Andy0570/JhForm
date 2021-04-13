@@ -77,7 +77,7 @@
     cell1.Jh_jumpClassName = [FormDemo2VC class];
     cell1.Jh_tipInfo = @"demo2";
     
-    JhFormCellModel *cell2 = JhFormCellModel_AddRightArrowCell(@"录入样式", nil);
+    JhFormCellModel *cell2 = JhFormCellModel_AddRightArrowCell(@"输入框样式", nil);
     cell2.Jh_jumpClassName = [FormDemo3VC class];
     cell2.Jh_tipInfo = @"demo3";
     

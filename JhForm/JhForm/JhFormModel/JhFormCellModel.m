@@ -16,89 +16,89 @@
 
 @end
 
-#pragma mark - ******************************* 快捷构建新增表单Cell ********************************
+#pragma mark - 便捷方法
 
-/**  默认 - 快捷构建新增表单Cell  */
+/**  默认 - 快捷添加新增表单Cell  */
 inline JhFormCellModel *JhFormCellModel_AddCell(NSString * _Nonnull title, NSString * _Nullable info, JhFormCellType cellType, BOOL editable, BOOL required, UIKeyboardType keyboardType) {
     return [JhFormCellModel Jh_initWithTitle:title info:info cellType:cellType editable:editable required:required keyboardType:keyboardType images:nil showPlaceholder:YES];
 }
 
-/** 快捷构建展示Cell（ 非必填，不可编辑 ） */
+/** 快捷添加一个详情表单条目 (非必选,不可编辑) */
 inline JhFormCellModel *JhFormCellModel_AddInfoCell(NSString * _Nonnull title, NSString * _Nullable info, JhFormCellType cellType) {
     return [JhFormCellModel Jh_initWithTitle:title info:info cellType:cellType editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
-/** 快捷构建录入Cell（ 左标题，右录入框 (文字居左)，可编辑 ） */
+/** 快捷添加一个输入类型的 cell，默认样式：居左，可编辑*/
 inline JhFormCellModel *JhFormCellModel_AddInputCell(NSString * _Nonnull title,NSString * _Nullable info, BOOL required, UIKeyboardType keyboardType) {
     return [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypeInput editable:YES required:required keyboardType:keyboardType images:nil showPlaceholder:YES];
 }
 
-/** 快捷构建选择Cell（ 左标题，右文字(居左)，带箭头，可选择 ） */
+/** 快捷添加一个选择类型的 cell，左标题，右文字(居左)，带箭头，可选择 */
 inline JhFormCellModel *JhFormCellModel_AddSelectCell(NSString * _Nonnull title,NSString * _Nullable info, BOOL required) {
     return [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypeSelect editable:YES required:required keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:YES];
 }
 
-/** 快捷构建一个TextView录入类型的Cell（上标题，下TextView，可编辑，显示字数统计 ）*/
+/** 快捷添加一个TextView输入类型的Cell（ 上标题，下TextView，可编辑，显示字数统计 ）*/
 inline JhFormCellModel *JhFormCellModel_AddTextViewInputCell(NSString * _Nonnull title,NSString * _Nullable info, BOOL required) {
     JhFormCellModel *model = [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypeTextViewInput editable:YES required:required keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:YES];
     model.Jh_showLength = YES;
     return model;
 }
 
-/** 快捷构建密码录入Cell（ 左标题，右录入框 (居左)，可编辑 ） */
+/** 快捷添加密码输入Cell（ 左标题，右输入框 (居左)，可编辑 ） */
 inline JhFormCellModel *JhFormCellModel_AddPwdInputCell(NSString * _Nonnull title,NSString * _Nullable info, BOOL required) {
     return [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypePwdInput editable:YES required:required keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:YES];
 }
 
-/** 快捷构建选择图片Cell */
+/** 快捷添加选择图片Cell */
 inline JhFormCellModel *JhFormCellModel_AddImageCell(NSString * _Nonnull title, BOOL required) {
     return [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeSelectImage editable:YES required:required keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
-/** 快捷构建按钮单选或多选Cell （ 左标题，右文字按钮组，可选择 ）*/
+/** 快捷添加按钮单选或多选Cell（ 左标题，右文字按钮组，可选择 ）*/
 inline JhFormCellModel *JhFormCellModel_AddSelectBtnCell(NSString * _Nonnull title,BOOL editable, BOOL required) {
     return [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeSelectBtn editable:editable required:required keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
-/** 快捷构建右侧自定义View Cell */
+/** 快捷添加右侧自定义View Cell */
 inline JhFormCellModel *JhFormCellModel_AddCustumRightCell(NSString * _Nonnull title) {
     return [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeCustumRight editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
-/** 快捷构建底部自定义View Cell*/
+/** 快捷添加底部自定义View Cell*/
 inline JhFormCellModel *JhFormCellModel_AddCustumBottomCell(NSString * _Nonnull title) {
     return [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeCustumBottom editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
-/** 快捷构建完全自定义View Cell */
+/** 快捷添加完全自定义View Cell */
 inline JhFormCellModel *JhFormCellModel_AddCustumALLViewCell(CGFloat cellHeight) {
     JhFormCellModel *model = [JhFormCellModel Jh_initWithTitle:nil info:nil cellType:JhFormCellTypeCustumALLView editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
     model.Jh_cellHeight = cellHeight;
     return model;
 }
 
-/** 快捷构建 标题居中Cell */
+/** 快捷添加标题居中Cell */
 inline JhFormCellModel *JhFormCellModel_AddCenterTextCell(NSString * _Nonnull title) {
     return [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeCenterTextCell editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
 }
 
 #pragma mark - 快速创建本文居右的Cell
 
-/** 右文本 - 快捷添加一个info(居右)的 不可编辑 Cell */
+/// 添加一个左标题，右文字(居右)、不可编辑的 cell
 inline JhFormCellModel *JhFormCellModel_AddRightTextCell(NSString * _Nonnull title, NSString * _Nullable info) {
     JhFormCellModel *model = [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypeInput editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
     model.Jh_InfoTextAlignment = JhFormCellInfoTextAlignmentRight;
     return model;
 }
 
-/** 右箭头 - 快捷添加一个info(居右)带箭头 Cell */
+/// 添加一个左标题，右文字(居右)、带右箭头的可选择 cell
 inline JhFormCellModel *JhFormCellModel_AddRightArrowCell(NSString * _Nonnull title, NSString * _Nullable info) {
     JhFormCellModel *model = [JhFormCellModel Jh_initWithTitle:title info:info cellType:JhFormCellTypeSelect editable:NO required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
     model.Jh_InfoTextAlignment = JhFormCellInfoTextAlignmentRight;
     return model;
 }
 
-/** 右Switch - 快捷添加一个右侧为 SwitchBtn Cell */
+/// 添加一个左标题，右侧为 Switch 开关的 cell
 inline JhFormCellModel *JhFormCellModel_AddSwitchBtnCell(NSString * _Nonnull title, BOOL Jh_switchBtn_on) {
     JhFormCellModel *model = [JhFormCellModel Jh_initWithTitle:title info:nil cellType:JhFormCellTypeSwitchBtn editable:YES required:NO keyboardType:UIKeyboardTypeDefault images:nil showPlaceholder:NO];
     model.Jh_InfoTextAlignment = JhFormCellInfoTextAlignmentRight;

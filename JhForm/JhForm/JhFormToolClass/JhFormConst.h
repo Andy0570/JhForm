@@ -15,25 +15,25 @@
 /// 版本号（20210330）
 #define kVersion @"2.1.0"
 
-
-/// 屏幕宽度、高度
+/// 屏幕尺寸
 #define Jh_ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define Jh_ScreenHeight [UIScreen mainScreen].bounds.size.height
 
+/// 状态栏、导航栏尺寸
 #define Jh_StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define Jh_ContentNavBarHeight 44.0
 #define Jh_TabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
 #define Jh_NavHeight (Jh_StatusBarHeight + Jh_ContentNavBarHeight)
 #define Jh_BottomSafeHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?34:0)
 
+/// 颜色&字体
 #define JhColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define JhGrayColor(v) JhColor((v), (v), (v))
 #define JhRandomColor JhColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
 #define JhFontsize(x)  [UIFont systemFontOfSize:x]
 
-// 弱引用
+/// 强引用&弱引用
 #define JhWeakSelf __weak typeof(self) weakSelf = self;
-// 强引用
 #define JhStrongSelf __strong typeof(self) strongSelf = weakSelf;
 
 /// iOS13之后
@@ -42,33 +42,34 @@
 /// 设置动态配置的属性和默认属性
 #define Jh_SetValueAndDefault(value,defaultValue) (value ?: defaultValue)
 
-/// 设置lightColor 和 darkColor
+/// 设置 lightColor 和 darkColor
 #define Jh_SetLightAndDark(light,dark) Jh_ThemeType == JhThemeTypeAuto?[UIColor Jh_colorWithLightColor:light darkColor:dark]:(Jh_ThemeType == JhThemeTypeLight?[UIColor Jh_colorWithLightColor:light darkColor:light]:[UIColor Jh_colorWithLightColor:dark darkColor:dark])
 
+/// 是否是深色模式
 #define Jh_IsDark if(Jh_IOS13_Later)return UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark; return false;
 
-/// 主题色，选择图片中的导航条使用了主题色
-#define JhBaseThemeColor JhColor(46, 150, 213)
-///  背景色
+/// 主题色，选择图片中的导航栏使用了主题色
+#define JhBaseThemeColor JhColor(84, 202, 195)
+/// 背景色
 #define JhBaseBgColor Jh_SetLightAndDark(JhGrayColor(248),JhBaseBgColor_dark)
 #define JhBaseBgColor_dark JhGrayColor(10)
-///  Cell背景色
+/// Cell 背景色
 #define JhBaseCellBgColor Jh_SetLightAndDark(JhGrayColor(255),JhBaseCellBgColor_dark)
 #define JhBaseCellBgColor_dark JhGrayColor(25)
-/// line背景色
+/// line 背景色
 #define JhBaseLineColor Jh_SetLightAndDark(JhGrayColor(230),JhGrayColor(35))
 /// Label 颜色
 #define JhBaseLabelColor JhGrayColor(51)
 #define JhBaseLabelColor_Dark JhGrayColor(198)
 
-/// 页面设置lightColor 和 darkColor
+/// 页面设置 lightColor 和 darkColor
 #define Jh_PageSetLightAndDark(light,dark) self.Jh_themeType ? (self.Jh_themeType== JhThemeTypeAuto?[UIColor Jh_colorWithLightColor:light darkColor:dark]:(self.Jh_themeType == JhThemeTypeLight?[UIColor Jh_colorWithLightColor:light darkColor:light]:[UIColor Jh_colorWithLightColor:dark darkColor:dark])): (Jh_ThemeType== JhThemeTypeAuto?[UIColor Jh_colorWithLightColor:light darkColor:dark]:(Jh_ThemeType == JhThemeTypeLight?[UIColor Jh_colorWithLightColor:light darkColor:light]:[UIColor Jh_colorWithLightColor:dark darkColor:dark]))
 
-/// 导航条背景色
+/// 导航栏背景色
 #define JhBaseNavBgColor Jh_PageSetLightAndDark(JhBaseThemeColor, JhGrayColor(20))
-/// 导航条标题颜色
+/// 导航栏标题颜色
 #define JhBaseNavTitleColor Jh_PageSetLightAndDark(UIColor.whiteColor, JhBaseLabelColor_Dark)
-/// 导航条文字颜色
+/// 导航栏文字颜色
 #define JhBaseNavTextColor JhBaseNavTitleColor
 
 /// 主题样式
@@ -99,17 +100,16 @@ UIKIT_EXTERN JhCellTextVerticalStyle const Jh_CellTextVerticalStyle;
 UIKIT_EXTERN JhTitleShowType const Jh_TitleShowType;
 
 
-#pragma mark - 标题相关
+#pragma mark - 标题
 
 /// 表单Cell，标题颜色
 #define Jh_TitleColor Jh_SetLightAndDark(JhBaseLabelColor,JhBaseLabelColor_Dark)
 
 /// 表单通用间距 10
 UIKIT_EXTERN CGFloat   const Jh_Margin;
-
 /// 表单Cell，左侧边缘距离，默认15
 UIKIT_EXTERN CGFloat   const Jh_LeftMargin;
-/// 红星宽，默认10
+/// 红星宽，默认 10
 UIKIT_EXTERN CGFloat   const Jh_RedStarWidth;
 /// 表单Cell，左侧图片宽高，默认24
 UIKIT_EXTERN CGFloat   const Jh_LeftImgWH;
@@ -124,7 +124,7 @@ UIKIT_EXTERN CGFloat   const Jh_TitleHeight;
 UIKIT_EXTERN CGFloat   const Jh_TitleFont;
 
 
-#pragma mark - info相关
+#pragma mark - info
 
 /// 表单Cell，右侧文本颜色
 #define Jh_InfoTextColor Jh_SetLightAndDark(JhBaseLabelColor,JhBaseLabelColor_Dark)
@@ -139,13 +139,13 @@ UIKIT_EXTERN CGFloat   const Jh_InfoLeftMargin;
 UIKIT_EXTERN CGFloat   const Jh_RightViewLeftMargin;
 /// 表单Cell，右侧边缘距离，默认10
 UIKIT_EXTERN CGFloat   const Jh_RightMargin;
-/// 表单详情字体大小，默认15
-UIKIT_EXTERN CGFloat   const Jh_InfoFont;
 /// 表单Cell，后缀文字字体大小(右侧按钮)，默认13
 UIKIT_EXTERN CGFloat   const Jh_SuffixTextFont;
 /// 表单Cell，右侧按钮图片文字间距，默认6
 UIKIT_EXTERN CGFloat   const Jh_RightBtnImgTextMargin;
 
+/// 表单详情字体大小，默认15
+UIKIT_EXTERN CGFloat   const Jh_InfoFont;
 /// 表单录入字数限制，默认50（ 0 表示无限制）
 UIKIT_EXTERN const NSUInteger Jh_MaxInputLength;
 
@@ -290,6 +290,7 @@ UIKIT_EXTERN NSString *const Jh_SubmitBtn_Text;
 #define Jh_HeaderTitleColor Jh_SetLightAndDark(JhBaseLabelColor,JhBaseLabelColor_Dark)
 /// 头部背景颜色，默认 JhBaseBgColor
 #define Jh_HeaderBgColor    JhBaseBgColor
+
 /// 尾部标题字体颜色，默认JhBaseLabelColor
 #define Jh_FooterTitleColor Jh_SetLightAndDark(JhBaseLabelColor,JhBaseLabelColor_Dark)
 /// 尾部标题字体颜色，默认 JhBaseBgColor

@@ -34,16 +34,18 @@
 
 #pragma mark - Dark Mode
 
-///十六进制字符串获取颜色
+/// 通过十六进制字符串设置颜色
 /// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
 + (UIColor *)Jh_colorWithHexString:(NSString *)color {
     return [self Jh_colorWithHexString:color alpha:1.0f];
 }
 
-/// 十六进制字符串获取颜色
+/// 通过十六进制字符串设置颜色
 /// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
 /// @param alpha 透明度
-+ (UIColor *)Jh_colorWithHexString:(NSString *)color alpha:(CGFloat)alpha {
++ (UIColor *)Jh_colorWithHexString:(NSString *)color
+                             alpha:(CGFloat)alpha
+{
     //删除字符串中的空格
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     // String should be 6 or 8 characters
@@ -84,40 +86,47 @@
     return [UIColor colorWithRed:((float)r / 255.0f) green:((float)g / 255.0f) blue:((float)b / 255.0f) alpha:alpha];
 }
 
-
-/// 适配暗黑模式颜色   传入的UIColor对象
+/// 适配暗黑模式颜色，传入 UIColor 对象
 /// @param lightColor 普通模式颜色
 /// @param darkColor 暗黑模式颜色
-+ (UIColor *)Jh_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
++ (UIColor *)Jh_colorWithLightColor:(UIColor *)lightColor
+                          darkColor:(UIColor *)darkColor
+{
+    // 适配深色模式，动态设置背景颜色
     if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull trainCollection) {
-            if ([trainCollection userInterfaceStyle] == UIUserInterfaceStyleLight) {
-                return lightColor;
-            } else {
-                return darkColor;
-            }
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            BOOL isDarkMode = (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark);
+            return isDarkMode ? darkColor : lightColor;
         }];
     } else {
         return lightColor ? lightColor : (darkColor ? darkColor : [UIColor clearColor]);
     }
 }
 
-/// 适配暗黑模式颜色   颜色传入的是16进制字符串
+/// 适配暗黑模式颜色，传入 16 进制字符串
 /// @param lightColor 普通模式颜色
 /// @param darkColor 暗黑模式颜色
-+ (UIColor *)Jh_colorWithLightColorString:(NSString *)lightColor darkColor:(NSString *)darkColor {
-    return [UIColor Jh_colorWithLightColor:[UIColor Jh_colorWithHexString:lightColor] darkColor:[UIColor Jh_colorWithHexString:darkColor]];
++ (UIColor *)Jh_colorWithLightColorString:(NSString *)lightColor
+                                darkColor:(NSString *)darkColor
+{
+    UIColor *light = [UIColor Jh_colorWithHexString:lightColor];
+    UIColor *dark = [UIColor Jh_colorWithHexString:darkColor];
+    return [UIColor Jh_colorWithLightColor:light darkColor:dark];
 }
 
-
-/// 适配暗黑模式颜色   颜色传入的是16进制字符串 还有颜色的透明度
+/// 适配暗黑模式颜色，传入 16 进制字符串、颜色透明度
 /// @param lightColor 普通模式颜色
 /// @param lightAlpha 普通模式颜色透明度
 /// @param darkColor 暗黑模式颜色透明度
 /// @param darkAlpha 暗黑模式颜色
-+ (UIColor *)Jh_colorWithLightColorString:(NSString *)lightColor lightColorAlpha:(CGFloat)lightAlpha darkColor:(NSString *)darkColor darkColorAlpha:(CGFloat)darkAlpha {
-    return [UIColor Jh_colorWithLightColor:[UIColor Jh_colorWithHexString:lightColor alpha:lightAlpha] darkColor:[UIColor Jh_colorWithHexString:darkColor alpha:darkAlpha]];
++ (UIColor *)Jh_colorWithLightColorString:(NSString *)lightColor
+                          lightColorAlpha:(CGFloat)lightAlpha
+                                darkColor:(NSString *)darkColor
+                           darkColorAlpha:(CGFloat)darkAlpha
+{
+    UIColor *light = [UIColor Jh_colorWithHexString:lightColor alpha:lightAlpha];
+    UIColor *dark = [UIColor Jh_colorWithHexString:darkColor alpha:darkAlpha];
+    return [UIColor Jh_colorWithLightColor:light darkColor:dark];
 }
-
 
 @end

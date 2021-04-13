@@ -209,6 +209,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2283F427262546A10097F28B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ED88AF9625809C2A004502BF /* ViewController.h */,
+				ED88AF8025809C2A004502BF /* ViewController.m */,
+				ED88AF8925809C2A004502BF /* FormDemo1VC.h */,
+				ED88AF7D25809C2A004502BF /* FormDemo1VC.m */,
+				ED88AF8825809C2A004502BF /* FormDemo2VC.h */,
+				ED88AF7E25809C2A004502BF /* FormDemo2VC.m */,
+				ED88AF8725809C2A004502BF /* FormDemo3VC.h */,
+				ED88AF7F25809C2A004502BF /* FormDemo3VC.m */,
+				ED88AF8425809C2A004502BF /* FormDemo4VC.h */,
+				ED88AF7B25809C2A004502BF /* FormDemo4VC.m */,
+				ED88AF8325809C2A004502BF /* FormDemo5VC.h */,
+				ED88AF7C25809C2A004502BF /* FormDemo5VC.m */,
+				ED88AF8525809C2A004502BF /* FormDemo6VC.h */,
+				ED88AF7225809C2A004502BF /* FormDemo6VC.m */,
+				ED88AF8625809C2A004502BF /* FormDemo7VC.h */,
+				ED88AF7125809C2A004502BF /* FormDemo7VC.m */,
+				ED88AF8225809C2A004502BF /* FormDemo8VC.h */,
+				ED88AF8A25809C2A004502BF /* FormDemo8VC.m */,
+				ED88AF8125809C2A004502BF /* FormDemo9VC.h */,
+				ED88AF9525809C2A004502BF /* FormDemo9VC.m */,
+				ED7F078B2611D50C001E8A09 /* FormDemo11VC.h */,
+				ED7F078C2611D50C001E8A09 /* FormDemo11VC.m */,
+				ED88AF7325809C2A004502BF /* demo10 */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2283F428262546AB0097F28B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED88AF8B25809C2A004502BF /* headerfooter */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		582876DB310CD764B0F0CF94 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,30 +317,8 @@
 		ED88AF7025809C2A004502BF /* demo */ = {
 			isa = PBXGroup;
 			children = (
-				ED88AF7325809C2A004502BF /* demo10 */,
-				ED88AF8925809C2A004502BF /* FormDemo1VC.h */,
-				ED88AF7D25809C2A004502BF /* FormDemo1VC.m */,
-				ED88AF8825809C2A004502BF /* FormDemo2VC.h */,
-				ED88AF7E25809C2A004502BF /* FormDemo2VC.m */,
-				ED88AF8725809C2A004502BF /* FormDemo3VC.h */,
-				ED88AF7F25809C2A004502BF /* FormDemo3VC.m */,
-				ED88AF8425809C2A004502BF /* FormDemo4VC.h */,
-				ED88AF7B25809C2A004502BF /* FormDemo4VC.m */,
-				ED88AF8325809C2A004502BF /* FormDemo5VC.h */,
-				ED88AF7C25809C2A004502BF /* FormDemo5VC.m */,
-				ED88AF8525809C2A004502BF /* FormDemo6VC.h */,
-				ED88AF7225809C2A004502BF /* FormDemo6VC.m */,
-				ED88AF8625809C2A004502BF /* FormDemo7VC.h */,
-				ED88AF7125809C2A004502BF /* FormDemo7VC.m */,
-				ED88AF8225809C2A004502BF /* FormDemo8VC.h */,
-				ED88AF8A25809C2A004502BF /* FormDemo8VC.m */,
-				ED88AF8125809C2A004502BF /* FormDemo9VC.h */,
-				ED88AF9525809C2A004502BF /* FormDemo9VC.m */,
-				ED7F078B2611D50C001E8A09 /* FormDemo11VC.h */,
-				ED7F078C2611D50C001E8A09 /* FormDemo11VC.m */,
-				ED88AF8B25809C2A004502BF /* headerfooter */,
-				ED88AF9625809C2A004502BF /* ViewController.h */,
-				ED88AF8025809C2A004502BF /* ViewController.m */,
+				2283F427262546A10097F28B /* Controller */,
+				2283F428262546AB0097F28B /* View */,
 			);
 			path = demo;
 			sourceTree = "<group>";
@@ -337,15 +353,15 @@
 		ED88B00925809D39004502BF /* JhForm */ = {
 			isa = PBXGroup;
 			children = (
-				ED88B03925809D39004502BF /* JhForm.bundle */,
-				ED88B00B25809D39004502BF /* JhFormCategory */,
-				ED88B02025809D39004502BF /* JhFormCell */,
-				ED88B01625809D39004502BF /* JhFormModel */,
 				ED88B03A25809D39004502BF /* JhFormProtocol.h */,
 				ED88B03B25809D39004502BF /* JhFormTableViewVC.h */,
 				ED88B00A25809D39004502BF /* JhFormTableViewVC.m */,
 				ED88B03C25809D39004502BF /* JhFormToolClass */,
+				ED88B01625809D39004502BF /* JhFormModel */,
+				ED88B02025809D39004502BF /* JhFormCell */,
 				ED88B01B25809D39004502BF /* JhFormView */,
+				ED88B00B25809D39004502BF /* JhFormCategory */,
+				ED88B03925809D39004502BF /* JhForm.bundle */,
 			);
 			path = JhForm;
 			sourceTree = "<group>";

@@ -1,16 +1,11 @@
 # JhForm
-JhForm - 自定义表单工具类，通过动态配置表单model，可以更加简单、快捷的创建表单、设置页面 <br> 
-<br> 
 
+自定义表单工具类，通过动态配置表单model，可以更加简单、快捷的创建表单、设置页面。
 
-| <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo1.gif" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo2.gif" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo5.gif" width="187" height="419"> |
-| ------ | ------ | ------ |
-| <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo1_dark.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo3.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo4.jpg" width="187" height="419"> |
-| <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo6.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo7.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo8.jpg" width="187" height="419"> |
-| <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo9.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo10.jpg" width="187" height="419"> | <img src="https://gitee.com/iotjh/Picture/raw/master/GitHub/JhForm/demo11.gif" width="187" height="419">
 
 
 ## 目录
+
 * [特性](#特性)
 * [简介](#简介)
 * [安装](#安装)
@@ -22,10 +17,11 @@ JhForm - 自定义表单工具类，通过动态配置表单model，可以更加
 * [更新记录](#更新记录)
 
 
+
 ## <a id="特性"></a> 特性 - Features
 
 - [x] 动态配置表单model
-- [x] 必填选填、录入校验
+- [x] 必填、选填、录入校验
 - [x] 配置标题、前缀图标，后缀文字、图标
 - [x] 单行、多行录入、密码录入，最大录入限制，实时录入监听与键盘切换
 - [x] 支持添加自定义文本、时间、地区选择器
@@ -38,6 +34,7 @@ JhForm - 自定义表单工具类，通过动态配置表单model，可以更加
 - [x] 提交按钮和导航条配置
 - [x] 录入样式排版：左标题右详情，或者上标题下详情
 - [x] 快速构建设置界面
+
 
 
 ## <a id="简介"></a> 简介 - Introduce
@@ -56,7 +53,7 @@ JhForm - 自定义表单工具类，通过动态配置表单model，可以更加
 
 <details>
   <summary><strong>手动导入</strong></summary>
-  
+
 ```ruby
 手动导入：将项目中的“JhForm”文件夹拖入项目中
 使用前导入头文件 "JhFormTableViewVC.h"
@@ -117,7 +114,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 ## <a id="配置项说明"></a> 配置项说明 - Configure
 <details>
   <summary><strong>配置项说明</strong></summary>
-  
+
 * 必填选填：默认必填展示小红星，选填隐藏，可配置标题后缀展示“必填选填”文字
 * 左侧图标：默认隐藏，可设置图片、图片大小
 * 标题：默认居上展示，可设置字体、颜色、宽度、换行、垂直居中展示，为空隐藏
@@ -137,7 +134,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 * JhFormCellModel 针对单个页面某些属性动态配置<br>
  * JhFormTableViewVC.h 针对整个页面进行表单提交按钮、导航条配置<br>
  * JhFormConst 针对项目范围内进行属性配置<br>
- 
+
 </details>
 
 
@@ -145,7 +142,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details  id="录入Cell">
   <summary><strong>录入Cell</strong></summary>
-   
+
 ```objc
 //设置右侧文字
   JhFormCellModel *phone = JhFormCellModel_AddInputCell(@"手机号:", @"", YES, UIKeyboardTypePhonePad);
@@ -191,7 +188,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="选择Cell">
   <summary><strong>选择Cell</strong></summary>
-   
+
 ```objc
     JhFormCellModel *selectCell = JhFormCellModel_AddSelectCell(@"性别:", @"男", YES);
     selectCell.Jh_placeholder = @"请选择性别";
@@ -206,7 +203,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="TextView录入Cell">
   <summary><strong>TextView录入Cell</strong></summary>
-   
+
 ```objc
    JhFormCellModel *textViewInput = JhFormCellModel_AddTextViewInputCell(@"备注:",  @"", NO);
    textViewInput.Jh_placeholder = @"选填，请输入备注(最多500字)";
@@ -216,7 +213,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="录入密码Cell">
   <summary><strong>录入密码Cell</strong></summary>
-   
+
 ```objc
     pwd.JhInputBlock = ^(NSString * _Nonnull text, BOOL isInputCompletion) {
         NSLog(@"当前的输入状态: %@", isInputCompletion ? @"YES" : @"NO");
@@ -227,7 +224,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="图片选择Cell">
   <summary><strong>图片选择Cell</strong></summary>
-   
+
 ```objc
     //默认选择图片与相机拍照
     JhFormCellModel *picture = JhFormCellModel_AddImageCell(@"选择图片:", NO);
@@ -261,7 +258,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="按钮选择Cell">
   <summary><strong>按钮选择Cell</strong></summary>
-   
+
 ```objc
     //单选，3个选项，设置图标
     JhFormCellModel *cell2 = JhFormCellModel_AddSelectBtnCell(@"单选3选项", YES, YES);
@@ -294,7 +291,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="右侧自定义Cell">
   <summary><strong>右侧自定义Cell</strong></summary>
-   
+
 ```objc
     //输入cell右侧设置自定义view
     JhFormCellModel *cell0 = JhFormCellModel_AddInputCell(@"InputCell右侧设置自定义view", @"", YES, UIKeyboardTypeNumberPad);
@@ -316,7 +313,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="底部自定义Cell">
   <summary><strong>底部自定义Cell</strong></summary>
-   
+
 ```objc
     //底部自定义View Cell
     JhFormCellModel *cell3 = JhFormCellModel_AddCustumBottomCell(@"底部自定义:");
@@ -329,7 +326,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="完全自定义Cell">
   <summary><strong>完全自定义Cell</strong></summary>
-   
+
 ```objc
     JhFormCellModel *Section1_cell1 = JhFormCellModel_AddCustumALLViewCell(80);
     Section1_cell1.Jh_custumALLViewBlock = ^(UIView * _Nonnull allView) {
@@ -346,7 +343,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="Switch按钮Cell">
   <summary><strong>Switch按钮Cell</strong></summary>
-   
+
 ```objc
     //Switch按钮
     JhFormCellModel *switchBtn = JhFormCellModel_AddSwitchBtnCell(@"开关Cell:", YES);
@@ -371,7 +368,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details id="标题居中Cell">
   <summary><strong>标题居中Cell</strong></summary>
-   
+
 ```objc
     JhFormCellModel *centerText = JhFormCellModel_AddCenterTextCell(@"退出登录");
     centerText.Jh_cellHeight = 60;
@@ -385,7 +382,7 @@ pod repo update 或 rm ~/Library/Caches/CocoaPods/search_index.json
 
 <details>
   <summary><strong>导航条和提交按钮</strong></summary>
-   
+
 ```objc
 #pragma mark - 设置导航条title和右侧文字
  -(void)setNav{
@@ -415,7 +412,7 @@ self.Jh_submitStr = @"提 交";
 
 <details>
   <summary><strong>单页面统一配置</strong></summary>
-   
+
 ```objc
   //如需要单页面统一配置，放在添加数据源后面
   
@@ -432,7 +429,7 @@ self.Jh_submitStr = @"提 交";
 
 <details>
   <summary><strong>添加数据源和提交数据的获取</strong></summary>
-   
+
 ```objc
   NSMutableArray *cellArr0 = [NSMutableArray array];
   [cellArr0 addObjectsFromArray: @[cell0,cell1,cell2,cell3,cell4,cell5,cell6,cell7]];
@@ -470,7 +467,7 @@ self.Jh_submitStr = @"提 交";
 
 <details>
   <summary><strong>主题切换</strong></summary>
-   
+
 ```objc
   //按照const中的Jh_ThemeType = JhThemeTypeAuto ，做主题切换处理
   //状态栏和导航条是在页面进行处理的
@@ -490,17 +487,17 @@ self.Jh_submitStr = @"提 交";
 ## <a id="更新记录"></a> 更新记录 - Update History
 <details open id="最近更新">
   <summary><strong>最近更新</strong></summary>
-   
+
 ```
 * 2021.03.30 - v2.1.0版本，暗黑模式优化，HXPhotoPicker更新至v3.1.9版本 <br>
 * 2020.12.09 - v2.0.0版本，代码重构，支持自定义xib Cell与model，此版本变动较大，若引用v1.5.0版本之前版本谨慎更新 <br>
 * 2020.11.13 - v1.5.0版本，添加视频选择效果，支持本地和网络视频选择与展示 <br>
 ```
 </details>
-   
+
 <details id="历史记录">
   <summary><strong>历史记录</strong></summary>
-  
+
 ```
 * 2020.11.09 - 添加设置样式 <br>
 * 2020.10.30 - 新增JhFormSelectBtnCell <br>

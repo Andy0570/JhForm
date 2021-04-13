@@ -8,7 +8,6 @@
 
 #import "JhFormConst.h"
 
-
 /**
  主题样式，默认跟随系统切换（iOS 13 生效）,
  
@@ -19,14 +18,14 @@
  */
 JhThemeType const Jh_ThemeType = JhThemeTypeAuto;
 
-//cell文字垂直方向对齐样式（title和info），默认居上
+/// cell文字垂直方向对齐样式（title和info），默认居上
 JhCellTextVerticalStyle const Jh_CellTextVerticalStyle = JhCellTextVerticalStyleTop;
 
 /// 必选Cell，标题呈现样式，默认标题前加红星
 JhTitleShowType const Jh_TitleShowType = JhTitleShowTypeRedStarFront;
 
 
-#pragma mark - 标题相关
+#pragma mark - 标题
 
 /// 表单通用间距 10
 CGFloat   const Jh_Margin = 10;
@@ -47,7 +46,7 @@ CGFloat   const Jh_TitleHeight = 24;
 CGFloat   const Jh_TitleFont = 15;
 
 
-#pragma mark - info相关
+#pragma mark - info
 
 /// 表单Cell，右侧TextView和左侧Label距离，默认5
 CGFloat   const Jh_InfoLeftMargin = 5;
@@ -55,16 +54,15 @@ CGFloat   const Jh_InfoLeftMargin = 5;
 CGFloat   const Jh_RightViewLeftMargin = 5;
 /// 表单Cell，右侧边缘距离，默认10
 CGFloat   const Jh_RightMargin = 10;
-/// 表单详情字体大小，默认15
-CGFloat   const Jh_InfoFont = 15;
 /// 表单Cell，后缀文字字体大小(右侧按钮)，默认13
 CGFloat   const Jh_SuffixTextFont = 13;
 /// 表单Cell，右侧按钮图片文字间距，默认6
 CGFloat   const Jh_RightBtnImgTextMargin = 6;
 
+/// 表单详情字体大小，默认15
+CGFloat   const Jh_InfoFont = 15;
 /// 表单录入字数限制，默认50（ 0 表示无限制）
 const NSUInteger Jh_MaxInputLength = 50;
-
 
 /// 表单 Cell 默认高度，大部分默认44，为确保显示正常，设置值 >= 44
 CGFloat   const Jh_DefaultCellHeight = 44;

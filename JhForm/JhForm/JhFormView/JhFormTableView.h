@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JhFormCellModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class JhFormCellModel;
 @interface JhFormTableView : UITableView
 
-/** 数据源  */
+/// 数据源
 @property (nonatomic, strong) NSMutableArray *Jh_formModelArr;
 
-/** 点击 cell 时执行的 Block */
-@property (nonatomic,   copy) void(^Jh_cellSelectBlock)(JhFormCellModel *cellModel,NSIndexPath *indexPath);
+/// 点击 cell 时执行的 Block
+@property (nonatomic, copy) void(^Jh_cellSelectBlock)(JhFormCellModel *cellModel, NSIndexPath *indexPath);
 
 @end
 

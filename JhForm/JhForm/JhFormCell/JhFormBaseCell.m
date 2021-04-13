@@ -11,11 +11,9 @@
 #import "JhTextView.h"
 #import "JhFormConst.h"
 
-@interface JhFormBaseCell()
-
-@end
-
 @implementation JhFormBaseCell
+
+#pragma mark - Initialize
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -28,7 +26,9 @@
 
 - (void)Jh_initUI {}
 
--(UILabel *)redStarLabel {
+#pragma mark - Custom Accessors
+
+- (UILabel *)redStarLabel {
     if (!_redStarLabel) {
         UILabel *label = [[UILabel alloc]init];
         label.text = @"*";
@@ -64,7 +64,7 @@
     return _titleLabel;
 }
 
--(JhTextView *)rightTextView {
+- (JhTextView *)rightTextView {
     if (!_rightTextView) {
         JhTextView *textView = [[JhTextView alloc]init];
         textView.textContainer.lineFragmentPadding = 0;
@@ -85,7 +85,7 @@
     return _rightTextView;
 }
 
--(UIButton *)rightBtn {
+- (UIButton *)rightBtn {
     if (!_rightBtn) {
         UIButton * button = [[UIButton alloc]init];
         button.titleLabel.font = JhFontsize(Jh_SuffixTextFont);
@@ -96,9 +96,6 @@
     }
     return _rightBtn;
 }
-
-//右侧按钮点击事件
-- (void)Jh_clickRightButton:(UIButton *)button {}
 
 - (UIView *)rightView {
     if (!_rightView) {
@@ -131,6 +128,11 @@
     }
     return _line;
 }
+
+#pragma mark - Actions
+
+// 右侧按钮点击事件
+- (void)Jh_clickRightButton:(UIButton *)button {}
 
 #pragma mark - JhFormProtocol
 

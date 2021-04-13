@@ -19,29 +19,26 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
-    if (self) {
-        [self initData];
-    }
+    if (!self) { return nil; }
+    [self initialize];
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        [self initData];
-    }
+    if (!self) { return nil; }
+    [self initialize];
     return self;
 }
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        [self initData];
-    }
+    if (!self) { return nil; }
+    [self initialize];
     return self;
 }
 
-- (void)initData {
+- (void)initialize {
     self.delegate = self;
     self.dataSource = self;
     self.backgroundColor = [UIColor whiteColor];
@@ -153,7 +150,7 @@
     [self registerCell:Jh_formModelArr];
 }
 
-//注册Cell
+// 注册Cell
 - (void)registerCell:(NSMutableArray *)dataArr {
     for (int i=0; i< dataArr.count; i++) {
         JhFormSectionModel *sectionModel = dataArr[i];
@@ -169,7 +166,6 @@
         }
     }
 }
-
 
 /**
  Xib注册cell
@@ -190,7 +186,5 @@
 - (void)Jh_registerCell:(Class)cls forCellReuseIdentifier:(NSString *)reuseIdentifier {
     [self registerClass:cls forCellReuseIdentifier:reuseIdentifier];
 }
-
-
 
 @end

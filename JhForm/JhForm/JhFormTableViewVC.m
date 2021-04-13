@@ -81,7 +81,7 @@
     }
 }
 
--(JhFormTableView *)Jh_formTableView {
+- (JhFormTableView *)Jh_formTableView {
     if (!_Jh_formTableView) {
         JhFormTableView *tableView = [[JhFormTableView alloc]init];
         tableView.frame = CGRectMake(0, Jh_NavHeight, Jh_ScreenWidth, Jh_ScreenHeight-Jh_NavHeight-Jh_BottomSafeHeight);
@@ -106,7 +106,7 @@
 }
 
 #pragma mark - 单击手势点击事件
--(void)tapClick:(UITapGestureRecognizer *)tap {
+- (void)tapClick:(UITapGestureRecognizer *)tap {
     [self.view endEditing:YES];
 }
 
@@ -130,12 +130,12 @@
     return _footerView;
 }
 
--(void)setJh_hiddenDefaultFooterView:(BOOL)Jh_hiddenDefaultFooterView {
+- (void)setJh_hiddenDefaultFooterView:(BOOL)Jh_hiddenDefaultFooterView {
     _Jh_hiddenDefaultFooterView = Jh_hiddenDefaultFooterView;
     self.Jh_formTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Jh_ScreenWidth, CGFLOAT_MIN)];
 }
 
--(NSMutableArray *)mArr {
+- (NSMutableArray *)mArr {
     if (!_mArr) {
         _mArr = [NSMutableArray array];
     }
@@ -150,13 +150,13 @@
 
 /** 添加sectionModel  */
 #pragma mark - 添加sectionModel 数据源
--(void)Jh_addSectionModel:(JhFormSectionModel *)sectionModel {
+- (void)Jh_addSectionModel:(JhFormSectionModel *)sectionModel {
     [self.mArr addObject:sectionModel];
     self.Jh_formTableView.Jh_formModelArr = self.mArr;
     _Jh_formModelArr = self.mArr;
 }
 
--(void)setJh_leftTitleWidth:(CGFloat)Jh_leftTitleWidth {
+- (void)setJh_leftTitleWidth:(CGFloat)Jh_leftTitleWidth {
     _Jh_leftTitleWidth = Jh_leftTitleWidth;
     for (JhFormSectionModel *sectionModel in self.mArr) {
         for (JhFormCellModel *cellModel in sectionModel.Jh_sectionModelArr) {
@@ -167,7 +167,7 @@
     _Jh_formModelArr = self.mArr;
 }
 
--(void)setJh_leftTitleHiddenRedStar:(BOOL)Jh_leftTitleHiddenRedStar {
+- (void)setJh_leftTitleHiddenRedStar:(BOOL)Jh_leftTitleHiddenRedStar {
     _Jh_leftTitleHiddenRedStar = Jh_leftTitleHiddenRedStar;
     for (JhFormSectionModel *sectionModel in self.mArr) {
         for (JhFormCellModel *cellModel in sectionModel.Jh_sectionModelArr) {
@@ -178,7 +178,7 @@
     _Jh_formModelArr = self.mArr;
 }
 
--(void)setJh_themeType:(JhThemeType)Jh_themeType {
+- (void)setJh_themeType:(JhThemeType)Jh_themeType {
     _Jh_themeType = Jh_themeType;
     for (JhFormSectionModel *sectionModel in self.mArr) {
         for (JhFormCellModel *cellModel in sectionModel.Jh_sectionModelArr) {
@@ -196,7 +196,7 @@
     self.navigationItem.title =Jh_navTitle;
 }
 
--(void)setJh_navRightTitle:(NSString *)Jh_navRightTitle {
+- (void)setJh_navRightTitle:(NSString *)Jh_navRightTitle {
     _Jh_navRightTitle = Jh_navRightTitle;
     if (Jh_navRightTitle.length) {
         UIColor *color = JhBaseNavTextColor;
@@ -205,7 +205,7 @@
     }
 }
 
--(void)setJh_navRightImage:(NSString *)Jh_navRightImage {
+- (void)setJh_navRightImage:(NSString *)Jh_navRightImage {
     _Jh_navRightImage = Jh_navRightImage;
     if (Jh_navRightImage.length) {
         UIBarButtonItem *rightItem = [UIBarButtonItem Jh_itemWithImage:Jh_navRightImage highImage:Jh_navRightImage target:self action:@selector(ClickNavRightItem)];
@@ -213,7 +213,7 @@
     }
 }
 
--(void)ClickNavRightItem {
+- (void)ClickNavRightItem {
     if (self.JhClickNavRightItemBlock) {
         self.JhClickNavRightItemBlock();
     }
@@ -222,13 +222,13 @@
 
 #pragma mark - 提交按钮
 
--(void)ClickSubmitBtn {
+- (void)ClickSubmitBtn {
     if (self.Jh_formSubmitBlock) {
         self.Jh_formSubmitBlock();
     }
 }
 
--(void)setJh_submitStr:(NSString *)Jh_submitStr {
+- (void)setJh_submitStr:(NSString *)Jh_submitStr {
     _Jh_submitStr = Jh_submitStr;
     [self.Jh_submitBtn setTitle:Jh_submitStr forState:UIControlStateNormal];
 }
@@ -238,7 +238,7 @@
     self.Jh_submitBtn.backgroundColor = Jh_submitBtnBgColor;
 }
 
--(void)setJh_submitBtnTBSpace:(CGFloat)Jh_submitBtnTBSpace {
+- (void)setJh_submitBtnTBSpace:(CGFloat)Jh_submitBtnTBSpace {
     _Jh_submitBtnTBSpace = Jh_submitBtnTBSpace;
     self.Jh_submitBtn.Jh_y = Jh_submitBtnTBSpace;
     if (self.Jh_submitBtnHeight) {
@@ -248,18 +248,18 @@
     }
 }
 
--(void)setJh_submitBtnLRSpace:(CGFloat)Jh_submitBtnLRSpace {
+- (void)setJh_submitBtnLRSpace:(CGFloat)Jh_submitBtnLRSpace {
     _Jh_submitBtnLRSpace = Jh_submitBtnLRSpace;
     self.Jh_submitBtn.Jh_x = Jh_submitBtnLRSpace;
     self.Jh_submitBtn.Jh_width = self.footerView.bounds.size.width - Jh_submitBtnLRSpace*2;
 }
 
--(void)setJh_submitBtnCornerRadius:(CGFloat)Jh_submitBtnCornerRadius {
+- (void)setJh_submitBtnCornerRadius:(CGFloat)Jh_submitBtnCornerRadius {
     _Jh_submitBtnCornerRadius = Jh_submitBtnCornerRadius;
     self.Jh_submitBtn.layer.cornerRadius = Jh_submitBtnCornerRadius;
 }
 
--(void)setJh_submitBtnHeight:(CGFloat)Jh_submitBtnHeight {
+- (void)setJh_submitBtnHeight:(CGFloat)Jh_submitBtnHeight {
     _Jh_submitBtnHeight = Jh_submitBtnHeight;
     self.Jh_submitBtn.Jh_height = Jh_submitBtnHeight;
     if (self.Jh_submitBtnTBSpace>0) {
@@ -269,15 +269,14 @@
     }
 }
 
--(void)setJh_submitBtnTextFontSize:(CGFloat)Jh_submitBtnTextFontSize {
+- (void)setJh_submitBtnTextFontSize:(CGFloat)Jh_submitBtnTextFontSize {
     _Jh_submitBtnTextFontSize = Jh_submitBtnTextFontSize;
     self.Jh_submitBtn.titleLabel.font = [UIFont systemFontOfSize:Jh_submitBtnTextFontSize];
 }
 
--(void)setJh_submitBtnTextColor:(UIColor *)Jh_submitBtnTextColor {
+- (void)setJh_submitBtnTextColor:(UIColor *)Jh_submitBtnTextColor {
     _Jh_submitBtnTextColor = Jh_submitBtnTextColor;
     [self.Jh_submitBtn setTitleColor:Jh_submitBtnTextColor forState:UIControlStateNormal];
 }
-
 
 @end

@@ -16,15 +16,13 @@
 #if kHasHXPhotoPicker
 <HXPhotoViewDelegate>
 
-@property (strong, nonatomic) HXPhotoView *onePhotoView;
-@property (strong, nonatomic) HXPhotoManager *oneManager;
+@property (strong, nonatomic) HXPhotoView *photoView;
+@property (strong, nonatomic) HXPhotoManager *photoManager;
+
 #endif
 
-/** 选中的图片数组 */
-@property (nonatomic, strong) NSArray *selectImgArr;
-/** 图片背景View */
-@property (nonatomic, strong) UIView *bottomImageBgView;
-
+@property (nonatomic, strong) NSArray *selectImgArr; // 选中的图片数组
+@property (nonatomic, strong) UIView *bottomImageBgView; // 图片背景View
 @property (nonatomic, assign) BOOL  isInit;
 
 @end
@@ -42,50 +40,54 @@
         [self.contentView addSubview:view];
         _bottomImageBgView = view;
 #if kHasHXPhotoPicker
-        [_bottomImageBgView addSubview:self.onePhotoView];
+        [_bottomImageBgView addSubview:self.photoView];
 #endif
     }
     return _bottomImageBgView;
 }
 
 #if kHasHXPhotoPicker
-- (HXPhotoManager *)oneManager {
-    if (!_oneManager) {
+- (HXPhotoManager *)photoManager {
+    if (!_photoManager) {
         NSInteger maxNum = Jh_GlobalMaxImages;
-        _oneManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
-        _oneManager.configuration.photoMaxNum = maxNum;
-        _oneManager.configuration.videoMaxNum = 0;
-        _oneManager.configuration.selectTogether = NO;
-        _oneManager.configuration.maxNum = maxNum;
-        _oneManager.configuration.cameraCellShowPreview = NO;
-        _oneManager.configuration.openCamera =NO;
-        //        _oneManager.configuration.photoCanEdit =NO;
-        _oneManager.configuration.showBottomPhotoDetail = NO;
-        _oneManager.configuration.saveSystemAblum = YES;
-        _oneManager.configuration.photoStyle = Jh_ThemeType == JhThemeTypeAuto ? HXPhotoStyleDefault :(Jh_ThemeType == JhThemeTypeLight? HXPhotoStyleInvariant : HXPhotoStyleDark);
-        [HXPhotoCommon photoCommon].requestNetworkAfter= YES;
+        _photoManager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+        _photoManager.configuration.type = HXConfigurationTypeWXMoment;
+        _photoManager.configuration.openCamera = NO; // 是否打开相机功能
+        _photoManager.configuration.photoMaxNum = maxNum; // 照片最大选择数，默认 8
+        _photoManager.configuration.videoMaxNum = 0; // 视频最大选择数，默认 1
+        _photoManager.configuration.maxNum = maxNum; // 最大选择数
+        _photoManager.configuration.selectTogether = NO; // 图片和视频是否能够同时选择 默认 NO
+        _photoManager.configuration.cameraCellShowPreview = NO; // 相机cell是否显示预览
+        _photoManager.configuration.photoCanEdit = YES; // 照片是否可以编辑
+        _photoManager.configuration.showBottomPhotoDetail = NO; // 显示底部照片数量信息 default YES
+        _photoManager.configuration.saveSystemAblum = YES; // 拍摄的 照片/视频 是否保存到系统相册，默认 NO
+        _photoManager.configuration.photoStyle = Jh_ThemeType == JhThemeTypeAuto ? HXPhotoStyleDefault :(Jh_ThemeType == JhThemeTypeLight? HXPhotoStyleInvariant : HXPhotoStyleDark); // 相册风格
+        [HXPhotoCommon photoCommon].requestNetworkAfter = YES;
     }
-    return _oneManager;
+    return _photoManager;
 }
 
-- (HXPhotoView *)onePhotoView {
-    if (!_onePhotoView) {
-        _onePhotoView = [[HXPhotoView alloc] initWithFrame:CGRectMake(Jh_ImageLeftMargin, Jh_OnePhotoViewTopMargin, Jh_OnePhotoViewWidth, Jh_ImageHeight) manager:self.oneManager];
-        _onePhotoView.outerCamera = YES;
-        _onePhotoView.lineCount = Jh_ImageOneLineCount;
-        _onePhotoView.spacing = Jh_ImageMargin;
-        _onePhotoView.delegate = self;
-        _onePhotoView.addImageName = Jh_AddIcon;
+- (HXPhotoView *)photoView {
+    if (!_photoView) {
+        _photoView = [[HXPhotoView alloc] initWithFrame:CGRectMake(Jh_ImageLeftMargin, Jh_OnePhotoViewTopMargin, Jh_OnePhotoViewWidth, Jh_ImageHeight) manager:self.photoManager];
+        _photoView.outerCamera = YES; /// 是否把相机功能放在外面 默认NO
+        _photoView.lineCount = Jh_ImageOneLineCount;
+        _photoView.spacing = Jh_ImageMargin;
+        _photoView.delegate = self;
+        _photoView.addImageName = Jh_AddIcon; /// 添加按钮的图片
     }
-    return _onePhotoView;
+    return _photoView;
 }
 
+#pragma mark - <HXPhotoViewDelegate>
+
+// 当view高度改变时调用
 - (void)photoView:(HXPhotoView *)photoView updateFrame:(CGRect)frame {
-    self.onePhotoView.frame = frame;
+    self.photoView.frame = frame;
     [self layoutSubviews];
 }
 
-#pragma mark -  根据 photoView 来判断是哪一个选择器
+//  根据 photoView 来判断是哪一个选择器
 - (void)photoView:(HXPhotoView *)photoView changeComplete:(NSArray<HXPhotoModel *> *)allList photos:(NSArray<HXPhotoModel *> *)photos videos:(NSArray<HXPhotoModel *> *)videos original:(BOOL)isOriginal {
     self.cellModel.Jh_imageAllList = allList;
     if (self.cellModel.Jh_selectImageType == JhSelectImageTypeImage) {
@@ -132,6 +134,7 @@
 #endif
 
 #pragma mark -- 刷新当前图片数据
+
 - (void)Jh_reloadData {
     if (self.cellModel.Jh_imageSelectBlock) {
         self.cellModel.Jh_imageSelectBlock(self.selectImgArr);
@@ -149,28 +152,28 @@
     [super Jh_configCellModel:cellModel];
     
 #if kHasHXPhotoPicker
-    self.oneManager.configuration.photoStyle = cellModel.Jh_cellThemeType == JhThemeTypeAuto ? HXPhotoStyleDefault :(cellModel.Jh_cellThemeType == JhThemeTypeLight? HXPhotoStyleInvariant : HXPhotoStyleDark);
+    self.photoManager.configuration.photoStyle = cellModel.Jh_cellThemeType == JhThemeTypeAuto ? HXPhotoStyleDefault :(cellModel.Jh_cellThemeType == JhThemeTypeLight? HXPhotoStyleInvariant : HXPhotoStyleDark);
     if (cellModel.Jh_maxImageCount) {
-        self.oneManager.configuration.maxNum = cellModel.Jh_maxImageCount;
-        self.oneManager.configuration.photoMaxNum = cellModel.Jh_maxImageCount;
+        self.photoManager.configuration.maxNum = cellModel.Jh_maxImageCount;
+        self.photoManager.configuration.photoMaxNum = cellModel.Jh_maxImageCount;
     }
-    self.oneManager.configuration.selectTogether = (cellModel.Jh_selectImageType == JhSelectImageTypeAll);
+    self.photoManager.configuration.selectTogether = (cellModel.Jh_selectImageType == JhSelectImageTypeAll);
     if (cellModel.Jh_selectImageType) {
-        self.oneManager.type = cellModel.Jh_selectImageType;
+        self.photoManager.type = cellModel.Jh_selectImageType;
     }
     if (cellModel.Jh_imageNoSaveAblum){
-        self.oneManager.configuration.saveSystemAblum = !cellModel.Jh_imageNoSaveAblum;
+        self.photoManager.configuration.saveSystemAblum = !cellModel.Jh_imageNoSaveAblum;
     }
     if (cellModel.Jh_videoMinimumDuration) {
-        self.oneManager.configuration.videoMinimumDuration = cellModel.Jh_videoMinimumDuration;
+        self.photoManager.configuration.videoMinimumDuration = cellModel.Jh_videoMinimumDuration;
     }
     if (cellModel.Jh_noShowAddImgBtn) {
-        self.onePhotoView.showAddCell = NO;
-        self.onePhotoView.editEnabled = NO;
+        self.photoView.showAddCell = NO;
+        self.photoView.editEnabled = NO;
     }
     if (cellModel.Jh_selectImageType == JhSelectImageTypeImage && self.isInit) {
         if (cellModel.Jh_imageArr.count) {
-            [self.oneManager clearSelectedList];
+            [self.photoManager clearSelectedList];
             NSMutableArray *mUrlArr = @[].mutableCopy;
             for (id img in cellModel.Jh_imageArr) {
                 HXPhotoModel *model ;
@@ -190,43 +193,43 @@
                     [mUrlArr addObject:model];
                 }
             }
-            [self.oneManager addLocalModels:mUrlArr];
-            [self.onePhotoView refreshView];
+            [self.photoManager addLocalModels:mUrlArr];
+            [self.photoView refreshView];
             self.isInit = NO;
         }
     }
     if (cellModel.Jh_selectImageType != JhSelectImageTypeImage && self.isInit) {
         if(cellModel.Jh_mixImageArr.count){
-            [self.oneManager clearSelectedList];
-            [self.oneManager addCustomAssetModel:cellModel.Jh_mixImageArr];
-            [self.onePhotoView refreshView];
+            [self.photoManager clearSelectedList];
+            [self.photoManager addCustomAssetModel:cellModel.Jh_mixImageArr];
+            [self.photoView refreshView];
             self.isInit = NO;
         }
     }
-    self.onePhotoView.hideDeleteButton = cellModel.Jh_hideDeleteButton;
+    self.photoView.hideDeleteButton = cellModel.Jh_hideDeleteButton;
     //弹出的相册界面的设置
     UIColor *themeColor = JhBaseThemeColor;
     UIColor *navColor = [UIColor whiteColor];
     UIColor *navTitleColor = [UIColor blackColor];
-    self.oneManager.configuration.navBarBackgroudColor = navColor;
-    self.oneManager.configuration.navigationTitleColor= navTitleColor;
-    self.oneManager.configuration.bottomViewBgColor = navColor;
-    self.oneManager.configuration.themeColor = themeColor;
-    self.oneManager.configuration.previewSelectedBtnBgColor = themeColor;
-    self.oneManager.configuration.cameraFocusBoxColor = themeColor;
-    self.oneManager.configuration.albumListViewCellSelectBgColor = JhBaseCellBgColor;
-    //    self.oneManager.configuration.bottomDoneBtnTitleColor = [UIColor purpleColor];
-    //    self.oneManager.configuration.cellSelectedBgColor = [UIColor redColor];
+    self.photoManager.configuration.navBarBackgroudColor = navColor;
+    self.photoManager.configuration.navigationTitleColor= navTitleColor;
+    self.photoManager.configuration.bottomViewBgColor = navColor;
+    self.photoManager.configuration.themeColor = themeColor;
+    self.photoManager.configuration.previewSelectedBtnBgColor = themeColor;
+    self.photoManager.configuration.cameraFocusBoxColor = themeColor;
+    self.photoManager.configuration.albumListViewCellSelectBgColor = JhBaseCellBgColor;
+    //    self.photoManager.configuration.bottomDoneBtnTitleColor = [UIColor purpleColor];
+    //    self.photoManager.configuration.cellSelectedBgColor = [UIColor redColor];
     JhWeakSelf
-    self.oneManager.viewWillAppear = ^(UIViewController *viewController) {
+    self.photoManager.viewWillAppear = ^(UIViewController *viewController) {
         [weakSelf updateStatusBar:cellModel];
     };
-    self.oneManager.viewWillDisappear = ^(UIViewController *viewController) {
+    self.photoManager.viewWillDisappear = ^(UIViewController *viewController) {
         [weakSelf updateStatusBar:cellModel];
     };
-    //    self.onePhotoView.didCancelBlock = ^{
+    //    self.photoView.didCancelBlock = ^{
     //    };
-    //    self.onePhotoView.didAddCellBlock = ^(HXPhotoView * _Nonnull myPhotoView) {
+    //    self.photoView.didAddCellBlock = ^(HXPhotoView * _Nonnull myPhotoView) {
     //    };
     
 #endif
@@ -237,13 +240,13 @@
 - (void)updateStatusBar:(JhFormCellModel *)cellModel {
     if (Jh_IOS13_Later) {
         if (cellModel.Jh_cellThemeType == JhThemeTypeAuto) {
-            self.oneManager.configuration.statusBarStyle = UIStatusBarStyleDefault;
+            self.photoManager.configuration.statusBarStyle = UIStatusBarStyleDefault;
         }
         if (cellModel.Jh_cellThemeType == JhThemeTypeLight) {
-            self.oneManager.configuration.statusBarStyle = UIStatusBarStyleDarkContent;
+            self.photoManager.configuration.statusBarStyle = UIStatusBarStyleDarkContent;
         }
         if (cellModel.Jh_cellThemeType == JhThemeTypeDark) {
-            self.oneManager.configuration.statusBarStyle = UIStatusBarStyleLightContent;
+            self.photoManager.configuration.statusBarStyle = UIStatusBarStyleLightContent;
         }
     }
 }
@@ -256,13 +259,13 @@
     if (!self.cellModel.Jh_title.length) {
         self.line.hidden = YES;
 #if kHasHXPhotoPicker
-        self.bottomImageBgView.frame = CGRectMake(0, 0, Jh_ScreenWidth, CGRectGetHeight(self.onePhotoView.frame)+Jh_OnePhotoViewTopMargin*2);
+        self.bottomImageBgView.frame = CGRectMake(0, 0, Jh_ScreenWidth, CGRectGetHeight(self.photoView.frame)+Jh_OnePhotoViewTopMargin*2);
 #endif
     } else {
 #if kHasHXPhotoPicker
         self.line.hidden = NO;
         self.line.frame = CGRectMake(Jh_LineLeftMargin, CGRectGetMaxY(self.titleLabel.frame)+Jh_Margin+Jh_LineHeight, Jh_ScreenWidth - Jh_LineLeftMargin, Jh_LineHeight);
-        self.bottomImageBgView.frame = CGRectMake(0, CGRectGetMaxY(self.line.frame), Jh_ScreenWidth, CGRectGetHeight(self.onePhotoView.frame)+Jh_OnePhotoViewTopMargin*2);
+        self.bottomImageBgView.frame = CGRectMake(0, CGRectGetMaxY(self.line.frame), Jh_ScreenWidth, CGRectGetHeight(self.photoView.frame)+Jh_OnePhotoViewTopMargin*2);
 #endif
     }
     //右侧按钮
